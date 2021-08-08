@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tierlist</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="/eel.js"></script>
+</head>
+<body>
+    <div id="tierlist">
+        <div class="tiers">
+            <div class="tier">
+                <div class="tier-name" id="s-title">S</div>
+                <div class="tier-elems" id="S">
+                </div>
+            </div>
+            <div class="tier">
+                <div class="tier-name" id="a-title">A</div>
+                <div class="tier-elems" id="A">
+                </div>
+            </div>
+            <div class="tier">
+                <div class="tier-name" id="b-title">B</div>
+                <div class="tier-elems" id="B">
+                </div>
+            </div>
+            <div class="tier">
+                <div class="tier-name" id="c-title">C</div>
+                <div class="tier-elems" id="C">
+                </div>
+            </div>
+            <div class="tier">
+                <div class="tier-name" id="d-title">D</div>
+                <div class="tier-elems" id="D">
+                </div>
+            </div>
+        </div>
+
+        <div class="rating">
+            <div id="currently-rating">
+                <div id="rated-el">
+                    <img src="" id="rated-img">
+                </div>
+                <div id="rated-info">
+                    <h2 id="rated-name"></h2>
+                </div>
+            </div>
+            <div id="awaiting-rating"></div>
+        </div>
+    </div>
+<script>
+    eel.expose(create_elements_list)
+    eel.expose(place_element_in_tierlist)
+
+    images_paths = []
+    function create_elements_list(images_list) {
+        images_paths = images_list
+        currently_rating_img = images_paths[0]
+        el_name = set_now_rating_element(currently_rating_img)
+
+        const elem_img = document.getElementById('rated-img')
+        elem_img.src = currently_rating_img
+
+        const rated_name = document.getElementById('rated-name')
+        rated_name.innerHTML = el_name
+
+        images_except_first = [...images_paths]
+        images_except_first.shift()
+        images_except_first.forEach(path => {
+            const img_cont = document.createElement('div')
+            img_cont.classList.add('unrated-el')
+            const elem_img = document.createElement('img')
+            elem_img.src=path
+            const target = document.getElementById('awaiting-rating')
+            target.appendChild(img_cont)
+            img_cont.appendChild(elem_img)
+        });
+    }
+
+    function place_element_in_tierlist(tier) {
+        img_path = images_paths[0]
+        images_paths.shift()
+
+        const element_div = document.createElement('div')
+        element_div.classList.add('tier-el')
+
+        const element_img = document.createElement('img')
+        element_img.src=img_path
+
+        const target = document.getElementById(tier);
+        console.log(target)
+        target.appendChild(element_div)
+        element_div.appendChild(element_img)
+        
+        const first_element = document.getElementsByClassName('unrated-el')[0]
+        first_element.remove()
+        
+        set_now_rating_element(images_paths[0])
+    }
+
+    function set_now_rating_element(img_path) {
+        splited_length = img_path.split('/').length
+        el_name = img_path.split('/')[splited_length-1].replace('.png', '').replace('.jpg', '').replace('.jpeg', '').replaceAll('_', ' ').toUpperCase()
+
+        const elem_img = document.getElementById('rated-img')
+        elem_img.src = img_path
+
+        const rated_name = document.getElementById('rated-name')
+        rated_name.innerHTML = el_name
+        return el_name
+    }
+</script>
+</body>
+</html>

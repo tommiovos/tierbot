@@ -1,0 +1,149 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
+}
+
+#s-title {
+    background-color: rgb(243, 46, 46);
+}
+#a-title {
+    background-color: rgb(255, 221, 27);
+}
+#b-title {
+    background-color: #79dd3f;
+}
+#c-title {
+    background-color: #3dccf0;
+}
+#d-title {
+    background-color: #6e2ceb;
+}
+
+#tierlist {
+    margin-left: 40px;
+    margin-top: 60px;
+}
+
+.tier-elems {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 50%;
+    background-color: #313131;
+    border-radius: 0px 6px 6px 0px;
+    align-items: center;
+}
+
+.tier {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    margin: 6px;
+    width: 1800px;
+    border-radius: 6px;
+}
+
+.tier-name {
+    width: 100px;
+    min-height: 100px;
+    height: auto;
+    font-weight: 600;
+    font-size: 20px;
+    border-radius: 6px 0px 0px 6px;
+}
+
+.tier-name, .tier-el {
+    background-color: #757575;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tier-el {
+    animation: 0.6s ease-in appear;
+    height: 100px;
+    width: 100px;
+}
+
+@keyframes appear {
+    0% {
+        margin-left: 50px;
+        border-radius: 100px;
+        height: 0px;
+        width: 0px;
+    }
+    20% {
+        border-radius: 0px;
+    }
+    100% {
+        margin-left: 0px;
+        border-radius: 0px;
+        height: 100px;
+        width: 100px;
+    }
+}
+
+.tier-el img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.rating {
+    display: flex;
+    margin-top: 40px;
+    margin-left: 6px;
+}
+
+.unrated-el {
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+    margin-right: 16px;
+    margin-bottom: 12px;
+    border-radius: 4px;
+    background-color: rgb(221, 221, 221);
+}
+
+.unrated-el img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+#awaiting-rating {
+    margin-top: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    flex: 2;
+}
+
+#currently-rating {
+    flex: 3;
+    padding-left: 100px;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: row;
+}
+
+#rated-el {
+    width: 240px;
+    height: 240px;
+    background-color: rgb(221, 221, 221);
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+#rated-img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}
+
+#rated-info {
+    margin-left: 40px;
+}
+
+#rated-name {
+    font-size: 40px;
+    font-weight: 700px;
+}
